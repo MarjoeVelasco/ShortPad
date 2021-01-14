@@ -1,0 +1,188 @@
+
+<div id="updateStory_form" style="display: none;">
+<h3><label>Edit</label></h3>
+<form enctype="multipart/form-data" id = "form-id2">
+  <label>Type</label><br> 
+  <input ng-model="update.type" name="storytype" type="radio" value="Non-fiction" required> Non-fiction<br>
+  <input ng-model="update.type" name="storytype" type="radio" value="Fiction"  required> Fiction<br><br>
+  <label>Genre</label><br>   
+  <select name="genre" ng-model="update.genre" class="form-control" required >   
+     <option value="" selected disabled> Select Genre </option>
+     <option value="crime">Crime</option>
+     <option value="children's">Children's</option>
+     <option value="humor">Humor</option>
+     <option value="horror">Horror</option>
+     <option value="romance">romance</option>  
+     <option value="sci-fi">Sci-fi</option>    
+  </select>
+  {{type}}
+      {{genre}}
+  <br><br>
+  <label>Title</label><br> 
+  <textarea ng-model="update.title" name="title" id="title2" type="text" placeholder="Enter Story Title" class="form-control" required></textarea><br>
+  <label>Description</label><br> 
+  <textarea ng-model="update.description" name="description" placeholder="Enter Story description" id="storydesc2" class="form-control" required></textarea><br>
+  <label>Content</label><br> 
+  <textarea ng-model="update.content" name="content" placeholder="Body of the Story" id="storybody2" class="form-control" style="height: 800px" required></textarea><br>
+  
+  <input type="submit" ng-click="updateStory(update)" value="Save" class="btn btn-danger"> <button onclick="document.getElementById('updateStory_form').style.display='none'" class="btn btn-default">Cancel</button>
+</form>
+</div>
+
+<div id="changeCover" style="display: none;">
+<h4><label>Change Photo</label></h4>
+<div class="panel panel-default">
+<br>
+  <form enctype="multipart/form-data" id = "form123">
+      <input name="picture"  id="coverphoto2" type="file" placeholder="Add Photo"><br><br><br>
+      <input type="submit" ng-click="changePic()" value="Save" class="btn btn-default"> <button onclick="document.getElementById('changeCover').style.display='none'" class="btn btn-danger">Cancel</button>
+    </form>
+</div> 
+</div>
+
+
+<div class="modal fade" id="login" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header" >
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4>Please Login to continue</h4>
+            </div>
+            <div class="modal-body">
+            <form id="login_form" name="login_form" novalidate>
+                <br>
+                <input type="text" placeholder="Username" id="uninpid" ng-model="item.User_UserName" class="form-control" required><br />
+                <br />
+                <input type="password" placeholder="Password" id="pwinpid" ng-model="item.User_Password" class="form-control" required><br />
+                <br />
+                <input type="button" ng-disabled="login_form.$invalid" value="Log In" id="loginbtnid" ng-click="login(item)" data-dismiss="modal" class="btn btn-primary btn-marginTop">
+            </form>
+            </div>
+            <div class="modal-footer">
+            No Account Yet? <button data-dismiss="modal" data-target="#register" data-toggle="modal" class="btn btn-danger btn-marginTop">Create Account</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="register" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header" >
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4>Register</h4>
+            </div>
+            <div class="modal-body">
+                <form id="register_form" name="register_form" novalidate>
+                    <br>
+                    <input type="text" placeholder="Enter Name" id="urnminpid" ng-model="new.name" class="form-control" required><br />
+                    <br />
+                    <input type="text" placeholder="Enter Username" id="uruninpid" ng-model="new.username" class="form-control" required><br />
+                    <br />
+                    <input type="password" placeholder="Enter Password" id="urpwinpid11" ng-model="new.password" class="form-control" required><br />
+                    <br />
+                    <input type="password" placeholder="Confirm Password" id="urpwinpid22" ng-model="new.password2" class="form-control" required><br>
+                    <span>{{match}}</span>
+                    <br>
+                    <button ng-disabled="register_form.$invalid" id="registerbtnid" ng-click="register(new)" class="btn btn-primary btn-marginTop">Register</button> 
+                </form>
+    
+            <div class="modal-footer">
+            Have An Account ? <button data-dismiss="modal" data-target="#login" data-toggle="modal" class="btn btn-danger btn-marginTop">Login</button>
+            </div>
+          </div>
+          
+        </div>
+    </div>
+    </div>
+
+<div class="col-md-12">
+  <div class="panel">
+    <div class="tabbable tabs-left clearfix">
+      <ul id="myTab1" class="nav nav-tabs">
+      <li class="active"><a data-target="#as" data-toggle="tab" style="cursor: pointer;" ng-click="showAddStory()">Add Story</a></li>
+      <li><a data-target="#up" data-toggle="tab" style="cursor: pointer;" ng-click="showPublish()">Unpublished Stories</a></li>
+      <li><a data-target="#us" data-toggle="tab" style="cursor: pointer;" ng-click="showUnpublish()">Published Stories</a></li>
+
+      </ul>
+   <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade active in" id="as">
+          <div id="form_addStory" style="display: block">
+          <form enctype="multipart/form-data" id = "form-id">
+              <label>Story Cover Photo</label>
+             <input ng-model="story.img" name="picture"  id="coverphoto" type="file" placeholder="Add Photo" required><br>
+             <label>Type</label><br>
+             <input ng-model="story.type" name="storytype" type="radio" value="Nonfic"  required> Non-fiction<br>
+             <input ng-model="story.type" name="storytype" type="radio" value="Fiction" required> Fiction<br><br>
+             <label>Genre</label><br> 
+             <select name="genre" ng-model="story.genre" class="form-control" required>   
+                <option value="" selected disabled> Select Genre </option>
+                <option value="crime">Crime</option>
+                <option value="children's">Children's</option>
+                <option value="humor">Humor</option>
+                <option value="horror">Horror</option>
+                <option value="romance">Romance</option>  
+                <option value="sci-fi">Sci-fi</option>    
+             </select>
+             {{type}}
+                 {{genre}}
+             <br>
+              <label>Title</label><br> 
+             <input ng-model="story.title" name="title" id="title" type="text" placeholder="Enter Story Title" class="form-control"   required><br>
+            <label>Description</label><br> 
+             <textarea ng-model="story.description" name="description" placeholder="Enter Story description" id="storydesc" class="form-control" required></textarea><br>
+
+             <textarea ng-model="story.content" name="content" placeholder="Body of the Story" id="storybody" class="form-control" style="height: 800px" required></textarea><br>
+             
+             <input type="submit" ng-click="addStory(story)" value="Add this to my Stories" class="btn btn-warning"><br><br><br>
+            
+          </form>
+         </div>
+        </div>
+        <div class="tab-pane fade" id="up">
+        <div id="published" style="display: none;">
+          <table class="table">
+          <tr>
+          <th>Title</th>
+          <th><center>Picture</center></th>
+          <th colspan="4"><center>Action</center></th>
+          </tr>
+
+          <tr ng-repeat=" detail in story">
+          <td >{{detail.title}}</td>
+          <td >
+              <center><img src="{{detail.img}}" height="110" width="70"><br><br><button ng-click="changePhoto(detail._id)" class="btn btn-warning">Change Photo</button> </center>
+          </td>
+          <td ><button ng-click="edit(detail._id)" class="btn btn-success">Edit</button></td>
+          <td ><button ng-click="delete(detail._id)" class="btn btn-danger">Delete</button></td>
+          <td ><button ng-click="view1(detail._id)" class="btn btn-warning">View</button></td>
+          <td ><button ng-click="publish(detail._id)" class="btn btn-default">Publish</button></td>
+          </tr>
+
+          </table>          
+        </div>
+        </div>
+        <div class="tab-pane fade" id="us">
+          <div id="unpublished" style="display: none;">
+        <table class="table">
+        <tr>
+        <th>Title</th>
+        <th><center>Picture</center></th>
+        <th colspan="4"><center>Action</center></th>
+        </tr>
+
+        <tr ng-repeat=" detail2 in story2">
+        <td >{{detail2.title}}</td>
+        <td ><center><img src="{{detail2.img}}" height="110" width="70"><br><br><button ng-click="changePhoto(detail2._id)" class="btn btn-warning">Change Photo</button><center></td>
+        <td ><button ng-click="edit(detail2._id)" class="btn btn-success">Edit</button></td>
+        <td ><button ng-click="delete2(detail2._id)" class="btn btn-danger">Delete</button></td>
+        <td ><button ng-click="view2(detail2._id)" class="btn btn-warning">View</button></td>
+        <td ><button ng-click="unpublish(detail2._id)" class="btn btn-default">Unpublish</button></td>
+        </tr>
+
+        </table>                            
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

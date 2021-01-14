@@ -1,0 +1,172 @@
+
+<div>
+<div ng-repeat="story in read">
+<center><h3>{{story.title}}</h3>
+<img src="{{story.img}}" width="150" height="240"><br>
+<i>By: {{story.author_name}}</i><br>
+<div ng-controller="starCtrl">
+    <div id="input_rating">
+        <button data-target="#addRate" data-toggle="modal" class="btn btn-default">Rate</button>
+    </div>
+    <div id="output_rating">
+        <div ng-repeat="n1 in getStarArray1()" ng-class="getClass1(n1)" ng-model="setClass1">  </div> <button data-target="#editRate" data-toggle="modal" class="btn btn-default">Edit</button><br>
+        <i>You have rated this story {{user_rate}} stars</i>
+    </div>
+  <br>
+<br>
+<br>
+</div>
+</center>
+
+<textarea style="resize:none" id="ccc_content" class="panel panel-default" readonly>
+{{story.content}}
+</textarea>
+
+<p style="visibility: hidden;">{{username}}</p>
+<p style="visibility: hidden;">{{id123}}</p>
+
+<h3>Comments</h3>
+
+<div ng-repeat="cc in story.comments">
+<div class="panel panel-default">
+<div class="panel-body">
+<b>{{cc.c_name}} ({{cc.c_username}}):</b><br>
+<p id="cc_content">{{cc.c_content}}</p>
+<div ng-if="cc.c_username ==username || story.user_id==id123 ">
+</div>
+</div>
+   
+<br>
+</div>
+
+<b ng-if="cc.c_username ==username">
+        <button class="btn btn-default marginTop" data-toggle="modal" data-target="#editCom" ng-click="editComment(story._id,cc.comment_id,cc.c_content)">Edit</button>
+</b>
+<button class="btn btn-danger marginTop" ng-click="deleteComment(story._id,cc.comment_id)">Delete</button>
+</div>
+<div class="modal fade" id="addRate" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" >
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4>Rate</h4>
+        </div>
+        <div class="modal-body">
+        <div ng-repeat="n in getStarArray()" ng-class="getClass(n)" ng-mouseover="setClass(n)">  </div>
+        <p>
+        You have chosen {{Stars}} stars
+        </p>
+        </div>
+        <div class="modal-footer">
+            <button ng-click="rate(user_id,story,Stars)" class="btn btn-primary btn-marginTop" data-dismiss="modal">Rate</button> 
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="editRate" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" >
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4>Update Rating</h4>
+        </div>
+        <div class="modal-body">
+        <div ng-repeat="n in getStarArray()" ng-class="getClass(n)" ng-mouseover="setClass(n)">  </div>
+        <p>
+        You have chosen {{Stars}} stars
+        </p>
+        </div>
+        <div class="modal-footer">
+        <button ng-click="edit_rate(user_id,story,Stars)" class="btn btn-warning btn-marginTop" data-dismiss="modal">Edit Rating</button>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<br>
+    <div class="form-group">
+  <form id="comment_box" name="comment_box" novalidate>
+  <textarea class="form-control" rows="5" id="comment" ng-model="content2"></textarea><br>
+  <input type="submit" value="Comment" ng-click="comment123(username,content2)" ng-disabled="comment_box.$invalid" class="btn btn-primary marginTop">
+</form>
+</div>
+
+
+</div>
+
+<div class="modal fade" id="editCom" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            
+              <button type="button" class="close" data-dismiss="modal" style="color:black;">&times;</button>
+            
+            <div class="modal-body">
+            <form id="editCom_form" name="editCom_form" novalidate>
+                <br>
+                <textarea class="form-control" rows="5" type="text"  ng-model="new_cc_comment" class="form-control" required><br /></textarea>
+                <br />
+                <input type="button" ng-disabled="editCom_form.$invalid" value="Save" id="loginbtnid" ng-click="upComment(new_cc_comment)" data-dismiss="modal" class="btn btn-primary btn-marginTop">
+            <button data-dismiss="modal" class="btn btn-primary btn-marginTop">Cancel</button>
+            </form>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+<div class="modal fade" id="login" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" >
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4>Login</h4>
+        </div>
+        <div class="modal-body">
+        <form id="login_form" name="login_form" novalidate>
+            <br>
+            <input type="text" placeholder="Username" id="uninpid" ng-model="item.User_UserName" class="form-control" required><br />
+            <br />
+            <input type="password" placeholder="Password" id="pwinpid" ng-model="item.User_Password" class="form-control" required><br />
+            <br />
+            <input type="button" ng-disabled="login_form.$invalid" value="Log In" id="loginbtnid" ng-click="login(item)" data-dismiss="modal" class="btn btn-primary btn-marginTop">
+        </form>
+        </div>
+        <div class="modal-footer">
+        No Account Yet? <button data-dismiss="modal" data-target="#register" data-toggle="modal" class="btn btn-danger btn-marginTop">Create Account</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="register" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" >
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4>Register</h4>
+        </div>
+        <div class="modal-body">
+            <form id="register_form" name="register_form" novalidate>
+                <br>
+                <input type="text" placeholder="Enter Name" id="urnminpid" ng-model="new.name" class="form-control" required><br />
+                <br />
+                <input type="text" placeholder="Enter Username" id="uruninpid" ng-model="new.username" class="form-control" required><br />
+                <br />
+                <input type="password" placeholder="Enter Password" id="urpwinpid" ng-model="new.password" class="form-control" required><br />
+                <br />
+                <input type="password" placeholder="Confirm Password" id="urpwinpid" ng-model="new.password2" class="form-control" required><br>
+                <span>{{match}}</span>
+                <br>
+                <button ng-disabled="register_form.$invalid" id="registerbtnid" ng-click="register(new)" class="btn btn-primary btn-marginTop">Register</button> 
+            </form>
+
+        <div class="modal-footer">
+        Have An Account ? <button data-dismiss="modal" data-target="#login" data-toggle="modal" class="btn btn-danger btn-marginTop">Login</button>
+        </div>
+      </div>
+      
+    </div>
+</div>
+</div>

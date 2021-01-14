@@ -1,0 +1,170 @@
+
+
+
+<div id="login_button">
+Please Log in to continue
+<button data-target="#login" data-toggle="modal" class="btn btn-default btn-marginTop">Login</button>  
+</div>
+
+<div id="content_profile">
+
+
+<div>
+
+<br><br>    
+<h2>Account Details</h2>
+<div ng-repeat="user in users">
+<form>    <br>
+<table class="table">
+<th>Name</th> 
+<th>Username</th>
+<th colspan="3">Action</th>
+<tr>
+<td><b>{{user.name}}</b></td>
+<td><b>{{user.username}}</b></td>
+<td><a data-target="#username_update" data-toggle="modal" style="cursor:pointer;" class="btn btn-default">Edit</a></td>
+<td><button data-target="#change_pass" data-toggle="modal" class="btn btn-danger">Change Password</button></td>
+</tr>
+</table>
+</form>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="change_pass" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header" >
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4>Change Password</h4>
+            </div>
+            <div class="modal-body">
+                <form id="change_pass_form" name="change_pass_form" novalidate>
+                    <br>
+                    <input type="password" placeholder="Current Password" id="urnminpid" ng-model="new.oldPass" class="form-control" required><br />
+                    <br />
+                    <input type="password" placeholder="New Password" id="uruninpid" ng-model="new.password" class="form-control" required><br />
+                    <br />
+                    <input type="password" placeholder="Re-type Password" id="urpwinpid" ng-model="new.password2" class="form-control" required><br />
+                    <br />
+                    <span>{{match}}</span>
+                </form>
+    
+            <div class="modal-footer">
+                    <button ng-click="changePass(new)" class="btn btn-primary btn-marginTop" ng-disabled="change_pass_form.$invalid">Save Changes</button> 
+            </div>
+          </div>
+          
+        </div>
+    </div>
+</div>    
+
+<div class="modal fade" id="name_update" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header" >
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4>Name Update</h4>
+            </div>
+            <div class="modal-body">
+                <form id="name_update_form" name="name_update_form" novalidate>
+                    <br>
+                    <input type="text" value="{{display_name}}" class="form-control" readonly><br />
+                    <br>
+                    <input type="text" placeholder="New Name" ng-model="new.name" class="form-control" required><br />
+                    <br />
+                    <br />
+                    <span>{{match_name}}</span>
+                </form>
+    
+            <div class="modal-footer">
+                    <button ng-click="changeName(new)" class="btn btn-primary btn-marginTop" ng-disabled="name_update_form.$invalid">Save Changes</button> 
+            </div>
+          </div>
+          
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="username_update" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header" >
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4>Username Update</h4>
+            </div>
+            <div class="modal-body">
+                <form id="username_update_form" name="username_update_form" novalidate>
+                    <br>
+                    <input type="text" value="{{display_username}}" class="form-control" readonly>
+                    <span><i>Note: Changing your username will automatically log you out and the changes will take effect the next time you log in</i></span><br>
+                    <br>
+                    <input type="text" placeholder="New Username" ng-model="new_username" class="form-control" required><br />
+                    <br />
+                    <br />
+                    <span>{{match_username}}</span>
+                </form>
+    
+            <div class="modal-footer">
+                    <button ng-click="changeUsername(new_username)" class="btn btn-primary btn-marginTop" ng-disabled="username_update_form.$invalid">Save Changes</button> 
+            </div>
+          </div>
+          
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="login" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" >
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4>Please Login to continue</h4>
+      </div>
+      <div class="modal-body">
+      <form id="login_form" name="login_form" novalidate>
+          <br>
+          <input type="text" placeholder="Username" id="uninpid" ng-model="item.User_UserName" class="form-control" required><br />
+          <br />
+          <input type="password" placeholder="Password" id="pwinpid" ng-model="item.User_Password" class="form-control" required><br />
+          <br />
+          <input type="button" ng-disabled="login_form.$invalid" value="Log In" id="loginbtnid" ng-click="login(item)" data-dismiss="modal" class="btn btn-primary btn-marginTop">
+      </form>
+      </div>
+      <div class="modal-footer">
+      No Account Yet? <button data-dismiss="modal" data-target="#register" data-toggle="modal" class="btn btn-danger btn-marginTop">Create Account</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="register" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" >
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4>Register</h4>
+      </div>
+      <div class="modal-body">
+          <form id="register_form" name="register_form" novalidate>
+              <br>
+              <input type="text" placeholder="Enter Name" id="urnminpid" ng-model="new.name" class="form-control" required><br />
+              <br />
+              <input type="text" placeholder="Enter Username" id="uruninpid" ng-model="new.username" class="form-control" required><br />
+              <br />
+              <input type="password" placeholder="Enter Password" id="urpwinpid" ng-model="new.password" class="form-control" required><br />
+              <br />
+              <input type="password" placeholder="Confirm Password" id="urpwinpid" ng-model="new.password2" class="form-control" required><br>
+              <span>{{match}}</span>
+              <br>
+              <button ng-disabled="register_form.$invalid" id="registerbtnid" ng-click="register(new)" class="btn btn-primary btn-marginTop">Register</button> 
+          </form>
+
+      <div class="modal-footer">
+      Have An Account ? <button data-dismiss="modal" data-target="#login" data-toggle="modal" class="btn btn-danger btn-marginTop">Login</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+</div>

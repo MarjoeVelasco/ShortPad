@@ -1,0 +1,133 @@
+<div class="col-md-12">
+    <div class="row">
+    <div class="col-md-6">
+        <input type="text" class="form-control" type="text" ng-model="search" placeholder="Search">
+    </div>
+    <div class="col-md-3">
+    <select  ng-model="genre" class="form-control" id="select-items">   
+        <option value=""> Select Genre </option>
+        <option value="crime">Crime</option>
+        <option value="children's">Children's</option>
+        <option value="humor">Humor</option>
+        <option value="horror">Horror</option>
+        <option value="romance">Romance</option>  
+        <option value="sci-fi">Sci-fi</option>    
+    </select>      
+    </div>
+    <div class="col-md-3" >
+    <select  ng-model="type" class="form-control" id="select-items">   
+    <option value=""> Select Type </option>
+    <option value="fiction">Fiction</option>
+    <option value="nonfic">Nonfiction</option>   
+    </select>
+    </div>
+</div>
+
+
+              
+		
+<br><br><br>
+<div>
+</div>
+  <div class="thumbnail1">
+        <div class="row">
+            <div class="col-sm-4 col-md-2"  ng-repeat="book in books|filter: search|filter:type|filter:genre"  data-toggle = "modal" data-target = "#view_book" ng-click="view(book._id)" style="cursor: pointer;">
+              <div class="thumbnail">
+                <img class="img-rounded"><img src="{{book.img}}" >
+                <div class="caption text-center">
+                  <a data-toggle = "modal" data-target = "#view_book" ng-click="view(book._id)"><b>{{book.title}}</b></a><br>
+                  <p><i>By: {{book.author_name}}</i><br><br>
+                    <i class="glyphicon glyphicon-star"></i> <i>Rating: {{book.rating}}</i><br><br></p>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+</div>
+<div>
+<div class="modal fade" id="view_book" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div ng-repeat="view in viewbooks">
+            <div class="modal-header" >
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="modal-body">
+                <form>
+                    <br />
+                    <img src="images/{{view.img}}" height="350" width="220" style="float:left;">
+                    <div style="float:left;padding-left:20px;">              
+                        <h3>{{view.title}}</h3>
+                        <h4><i>By: {{view.author_name}}</i></h4><br>
+                        {{view.description}}</div><br />
+                    <br />
+                </form>
+            </div>
+            <div class="modal-footer">
+                    <button class="btn btn-warning" ng-click="read(view._id)">Read</button> 
+                    <button ng-click="favorite(title,view)" class="btn btn-default btn-marginTop">Add To Favorites</button> 
+            </div>
+          </div>
+          
+        </div>
+    </div>
+</div>  
+</div>
+
+
+
+<div class="modal fade" id="login" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header" >
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4>Please Login to continue</h4>
+            </div>
+            <div class="modal-body">
+            <form id="login_form" name="login_form" novalidate>
+                <br>
+                <input type="text" placeholder="Username" id="uninpid" ng-model="item.User_UserName" class="form-control" required><br />
+                <br />
+                <input type="password" placeholder="Password" id="pwinpid" ng-model="item.User_Password" class="form-control" required><br />
+                <br />
+                <input type="button" ng-disabled="login_form.$invalid" value="Log In" id="loginbtnid" ng-click="login(item)" data-dismiss="modal" class="btn btn-primary btn-marginTop">
+            </form>
+            </div>
+            <div class="modal-footer">
+            No Account Yet? <button data-dismiss="modal" data-target="#register" data-toggle="modal" class="btn btn-danger btn-marginTop">Create Account</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="register" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header" >
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4>Register</h4>
+            </div>
+            <div class="modal-body">
+                <form id="register_form" name="register_form" novalidate>
+                    <br>
+                    <input type="text" placeholder="Enter Name" id="urnminpid" ng-model="new.name" class="form-control" required><br />
+                    <br />
+                    <input type="text" placeholder="Enter Username" id="uruninpid" ng-model="new.username" class="form-control" required><br />
+                    <br />
+                    <input type="password" placeholder="Enter Password" id="urpwinpid" ng-model="new.password" class="form-control" required><br />
+                    <br />
+                    <input type="password" placeholder="Confirm Password" id="urpwinpid" ng-model="new.password2" class="form-control" required><br>
+                    <span>{{match}}</span>
+                    <br>
+                    <button ng-disabled="register_form.$invalid" id="registerbtnid" ng-click="register(new)" class="btn btn-primary btn-marginTop">Register</button> 
+                </form>
+    
+            <div class="modal-footer">
+            Have An Account ? <button data-dismiss="modal" data-target="#login" data-toggle="modal" class="btn btn-danger btn-marginTop">Login</button>
+            </div>
+          </div>
+          
+        </div>
+    </div>
+    </div>

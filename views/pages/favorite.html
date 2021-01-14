@@ -1,0 +1,54 @@
+<br>
+<div>
+    <div>
+        
+        <div ng-repeat="user in users">
+
+            <h3>Your Favorites</h3>
+        <div class="thumbnail1">
+        <div class="row">
+            <div class="col-sm-4 col-md-2"  ng-repeat="book in user.book_details"  data-toggle = "modal" data-target = "#view_book" ng-click="view(book._id)" style="cursor: pointer;">
+              <div class="thumbnail">
+                <img class="img-rounded"><img src="{{book.img}}" >
+                <div class="caption text-center">
+                  <a data-toggle = "modal" data-target = "#view_book" ng-click="view(book._id)"><b>{{book.title}}</b></a><br>
+                  <p><i>By: {{book.author_name}}</i><br><br>
+                    <i class="glyphicon glyphicon-star"></i> <i>Rating: {{book.rating}}</i><br><br></p>
+                    <button ng-click="removeFav(book._id)" class="btn btn-warning">Remove</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div> 
+  
+        </div>         
+</div>
+
+<div class="modal fade" id="view_book" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div ng-repeat="view in viewbooks">
+        <div class="modal-header" >
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body">
+            <form>
+                <br />
+                <img src="images/{{view.img}}" height="350" width="220" style="float:left;">
+                <div style="float:left;padding-left:20px;">              
+                    <h3>{{view.title}}</h3>
+                    <h4><i>By: {{view.author_name}}</i></h4><br>
+                    {{view.description}}</div><br />
+                <br />
+            </form>
+        </div>
+        <div class="modal-footer">
+                <button class="btn btn-warning btn-marginTop" ng-click="read(view._id)">Read</button> 
+        </div>
+      </div>
+      
+    </div>
+</div>
+</div>  

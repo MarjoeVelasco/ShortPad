@@ -1,0 +1,41 @@
+  
+    <div class="col-md-12">
+            <div class="panel">
+              <div class="tabbable tabs-left clearfix">
+                <ul id="myTab1" class="nav nav-tabs">
+                  <li><a data-target="#create_acc" data-toggle="tab" style="cursor: pointer;">Create Account</a></li>
+                  <li class="active"><a data-target="#login123" data-toggle="tab" style="cursor: pointer;">Login</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                  <div class="tab-pane fade " id="create_acc">
+                  <h4>Register</h4>
+                    <form id="register_form" name="register_form" novalidate>
+                        <br>
+                        <input type="text" placeholder="Enter Name" id="urnminpid" ng-model="new.name" class="form-control" required><br />
+                        <br />
+                        <input type="text" placeholder="Enter Username" id="uruninpid" ng-model="new.username" class="form-control" required><br />
+                        <br />
+                        <input type="password" placeholder="Enter Password" id="urpwinpid" ng-model="new.password" class="form-control" required><br />
+                        <br />
+                        <input type="password" placeholder="Confirm Password" id="urpwinpid" ng-model="new.password2" class="form-control" required><br>
+                        <span>{{match}}</span>
+                        <br>
+                        <button ng-disabled="register_form.$invalid" id="registerbtnid" ng-click="register(new)" class="btn btn-primary btn-marginTop">Register</button> 
+                    </form>
+                  </div>
+                  <div class="tab-pane fade active in" id="login123">
+                      <h4>Login</h4>
+                    <form id="login_form" name="login_form" novalidate>
+                        <br>
+                        <input type="text" placeholder="Username" id="uninpid" ng-model="item.User_UserName" class="form-control" required><br />
+                        <br />
+                        <input type="password" placeholder="Password" id="pwinpid" ng-model="item.User_Password" class="form-control" required><br />
+                        <br />
+                        <input type="button" ng-disabled="login_form.$invalid" value="Log In" id="loginbtnid" ng-click="login(item)" data-dismiss="modal" class="btn btn-primary btn-marginTop">
+
+                      </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>

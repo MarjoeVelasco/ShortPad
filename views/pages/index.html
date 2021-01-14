@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Shortpad</title>
+</head>
+<body ng-app="myApp" >
+
+  <div class="col-md-12">
+        <div class="row">
+        <nav class="avbar navbar-default navbar-custom" role="navigation">
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+          <li><a href="#" style="font-family: 'Courier New', Courier, monospace;font-size: 1.5em;"><img src="images/books.png" width="20"> Shortpad<span class="sr-only">Shortpad</span></a></li>
+          <li><a class="nav-link first-nav"  href="#!discover" style="border-right: 1px solid white; border-left: 1px solid white;">Discover</a></li>
+          <li><a class="nav-link"  href="#!stories" style="border-right: 1px solid white;">Your Writings</a></li>
+          <li><a class="nav-link"  href="#!favorite" style="border-right: 1px solid white;">Favorite</a></li>
+           <li><a class="nav-link" href="#!profile" style="border-right: 1px solid white;">Profile</a></li>  
+           </ul>     
+        <form class="navbar-form navbar-left">
+          <div class="form-group">
+            
+          </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right" ng-controller="navCtrl">
+          <li><a style="cursor: pointer;">Hello {{username123}}</a> </li>
+          <li><img src="images/profile.png" width="30" style="margin-top: 10px;"/></li>
+          <li>
+            <a href='#!login'>
+            <button class="btn btn-warning btn-xs" id="login2_button">Log in / Register</button></a></li>
+          <li><a href='http://localhost:8080/logout'><button class="btn btn-warning btn-xs" id="logout2_button">Log out</button></a></li>
+        </ul>
+        </div>
+      </nav>     
+      </div>
+    </div>
+
+	<div class="col-md-12">
+    <div class="panel-default">
+        <div class="panel-body">  
+		    <div class="content">
+
+		        
+		        <ng-view>
+		        
+		        </ng-view>
+		        
+		    
+		    </div>
+        </div>
+    </div>
+  </div>
+
+    
+</body>
+</html>
+
+<div class="modal fade" id="login" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" >
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4>Login</h4>
+        </div>
+        <div class="modal-body">
+        <form id="login_form" name="login_form" novalidate>
+            <br>
+            <input type="text" placeholder="Username" id="uninpid" ng-model="item.User_UserName" class="form-control" required><br />
+            <br />
+            <input type="password" placeholder="Password" id="pwinpid" ng-model="item.User_Password" class="form-control" required><br />
+            <br />
+            <input type="button" ng-disabled="login_form.$invalid" value="Log In" id="loginbtnid" ng-click="login2(item)" data-dismiss="modal" class="btn btn-primary btn-marginTop">
+        </form>
+        </div>
+        <div class="modal-footer">
+        No Account Yet? <button data-dismiss="modal" data-target="#register" data-toggle="modal" class="btn btn-danger btn-marginTop">Create Account</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="register" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" >
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4>Register</h4>
+        </div>
+        <div class="modal-body">
+            <form id="register_form" name="register_form" novalidate>
+                <br>
+                <input type="text" placeholder="Enter Name" id="urnminpid" ng-model="new.name" class="form-control" required><br />
+                <br />
+                <input type="text" placeholder="Enter Username" id="uruninpid" ng-model="new.username" class="form-control" required><br />
+                <br />
+                <input type="password" placeholder="Enter Password" id="urpwinpid" ng-model="new.password" class="form-control" required><br />
+                <br />
+                <input type="password" placeholder="Confirm Password" id="urpwinpid" ng-model="new.password2" class="form-control" required><br>
+                <span>{{match}}</span>
+                <br>
+                <button ng-disabled="register_form.$invalid" id="registerbtnid" ng-click="register(new)" class="btn btn-primary btn-marginTop">Register</button> 
+            </form>
+
+        <div class="modal-footer">
+        Have An Account ? <button data-dismiss="modal" data-target="#login" data-toggle="modal" class="btn btn-danger btn-marginTop">Login</button>
+        </div>
+      </div>
+      
+    </div>
+</div>
+</div>
+
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="angular/angular.min.js"></script>
+<script type="text/javascript" src="angular/angular-route.js"></script>
+<script src="./controller/authenticationController.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/jquery-3.3.1.min.js"></script>
+ <script src="js/bootstrap.min.js"></script>
